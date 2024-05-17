@@ -17,7 +17,8 @@ defmodule SnlWeb.Router do
   scope "/", SnlWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    # get "/", PageController, :home
+    live "/", SnlLive, :roll
   end
 
   # Other scopes may use custom stacks.
