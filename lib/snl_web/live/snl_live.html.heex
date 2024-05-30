@@ -1,22 +1,39 @@
 <div class="grid grid-cols-3">
 	<div class="max-w-sm rounded overflow-hidden shadow-lg col-span-1 h-80">
 	  <div class="px-20 justify-self-start">
-		<button type="button" phx-click="roll" class="hover:bg-transparent bg-blue-500 hover:text-blue-700 font-semibold text-white py-2 px-4 border hover:border-blue-500 border-transparent rounded m-2"> Roll Die</button><br>
+		    <button type="button" class="hover:bg-transparent bg-blue-500 hover:text-blue-700 font-semibold text-white py-2 px-4 border hover:border-blue-500 border-transparent rounded m-2" phx-click="roll">Roll Die</button><br>
 
-		<div class="py-7 px-7 border border-blue-500 rounded shadow-lg h-40 w-40 m-2"> 
-			<%= for x <- 1..@die do %>
-			<button type="button" class="bg-blue-500 py-4 px-4 border rounded-full"></button>
-			<% end %>
+		<%= if @die == 0 do %>
+			<p class="text-lg text-blue-700 font-semibold m-4">Roll the Die to start!</p>
+		<% else %>
+		  <div class="py-7 px-7 border border-blue-500 rounded shadow-lg h-40 w-40 m-2"> 
+				<%= for _x <- 1..@die do %>
+				<button type="button" class="bg-blue-500 py-4 px-4 border rounded-full"></button>
+				<% end %>
+			</div>
+			<p class="text-lg text-blue-700 font-semibold m-4">You rolled <span class="text-red-400"> <%= @die %>! </span></p>
+		<% end %>
 		</div>
-		<p class="text-lg text-blue-700 font-semibold m-4">You rolled <span class="text-red-400"> <%= @die %>! </span></p>
-	  </div>
 	</div>
 
-	<div type="button" class="grid grid-cols-10 gap-1 col-span-2 text-center">
-	  <%= for x <- 100..1 do %>
-	    <div class="bg-orange-500 px-6 py-7 text-white font-bold"><%= x %> </div>
+	<div type="button" class="grid grid-cols-10 gap-1 col-span-2 text-center sticky">
+		<img class="absolute bottom-80 right-100" src={~p"/images/metal_ladder.png"} width="145">
+		<img class="absolute bottom-24 right-20 rotate-[40deg]" src={~p"/images/brown_ladder.png"} width="420">
+		<img class="absolute top-40 right-0 rotate-[-9deg]" src={~p"/images/purple_ladder.png"} width="220">
+		<img class="md:absolute top-0 right-80 rotate-[23deg]" src={~p"/images/black_snake.png"} width="350">
+		<img class="absolute bottom-3 left-72 rotate-[-7deg]" src={~p"/images/green_snake.png"} width="220">
+		<img class="absolute bottom-4.5 left-5.5 rotate-[15deg]" src={~p"/images/orange_snake.png"} width="200">
+		<img class="absolute bottom-60 left-52 rotate-[20deg]" src={~p"/images/beige_ladder.png"} width="220">
+		<img class="absolute top-32 left-56" src={~p"/images/black_ladder.png"} width="90">
+	  <%= for {x, color} <- @rand do %>
+	    <div class={color}>
+	    	<div class="px-7 py-7 text-white font-bold flex"> <%= x %>
+	    	  <img class="p-0 sr-only" id={"img-#{x}"} src={~p"/images/red-pin.png"} width="40">
+	    	</div>
+	    </div>
 	  <% end %>
 	</div>
 	<div class="col-span-1">
+		<button type="button" class="hover:bg-transparent bg-blue-500 hover:text-blue-700 font-semibold text-white py-2 px-4 border hover:border-blue-500 border-transparent rounded m-2"> <span phx-click={JS.remove_class("sr-only", to: "#img-#{@position}") |> JS.add_class("sr-only", to: "#img-#{@previous_position}") |> JS.dispatch("phx-click", detail: "roll")}>Make your move by <%= @die %> steps!</span></button><br>
 	</div>
 </div>
