@@ -17,7 +17,6 @@ defmodule SnlWeb.Router do
   scope "/", SnlWeb do
     pipe_through :browser
 
-    # get "/", PageController, :home
     live "/", SnlLive, :roll
   end
 
