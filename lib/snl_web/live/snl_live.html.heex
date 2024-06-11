@@ -17,6 +17,14 @@
 	</div>
 
 	<div type="button" class="grid grid-cols-10 gap-1 col-span-2 text-center sticky">
+		<img class="absolute bottom-80 right-100" src={~p"/images/metal_ladder.png"} width="145">
+		<img class="absolute bottom-24 right-20 rotate-[40deg]" src={~p"/images/brown_ladder.png"} width="420">
+		<img class="absolute top-40 right-0 rotate-[-9deg]" src={~p"/images/purple_ladder.png"} width="220">
+		<img class="md:absolute top-0 right-80 rotate-[23deg]" src={~p"/images/black_snake.png"} width="350">
+		<img class="absolute bottom-3 left-72 rotate-[-7deg]" src={~p"/images/green_snake.png"} width="220">
+		<img class="absolute bottom-4.5 left-5.5 rotate-[15deg]" src={~p"/images/orange_snake.png"} width="200">
+		<img class="absolute bottom-60 left-52 rotate-[20deg]" src={~p"/images/beige_ladder.png"} width="220">
+		<img class="absolute top-32 left-56" src={~p"/images/black_ladder.png"} width="90">
 	  <%= for {x, color} <- @rand do %>
 	    <div class={color}>
 	    	<div class="px-7 py-7 text-white font-bold flex"> <%= x %>
