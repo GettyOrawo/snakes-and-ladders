@@ -4,12 +4,21 @@ defmodule SnlWeb.SnlLive do
   alias Snl.Game.Play
 
   def mount(_params, _session, socket) do
-  	{:ok, assign(socket, die: 0)}
+  	new_socket =
+  	socket
+  	|> assign(die: 0)
+  	|> assign(rand: Play.random_color())
+
+  	{:ok, new_socket}
   end
 
   def handle_event("roll", map, socket) do
   	die_roll = Play.roll_die()
 
-  	{:reply, map, assign(socket, die: die_roll)}
+  	new_socket =
+  	socket
+  	|> assign(die: die_roll)
+
+  	{:reply, map, new_socket}
   end
 end

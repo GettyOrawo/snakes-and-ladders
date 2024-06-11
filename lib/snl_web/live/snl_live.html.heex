@@ -15,4 +15,16 @@
 		<% end %>
 		</div>
 	</div>
+
+	<div type="button" class="grid grid-cols-10 gap-1 col-span-2 text-center sticky">
+	  <%= for {x, color} <- @rand do %>
+	    <div class={color}>
+	    	<div class="px-7 py-7 text-white font-bold flex"> <%= x %>
+	    	</div>
+	    </div>
+	  <% end %>
+	</div>
+	<div class="col-span-1">
+		
+	</div>
 </div>
