@@ -3,7 +3,7 @@ import Config
 # Configure your database
 config :snl, Snl.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "welcome2",
   hostname: "localhost",
   database: "snl_dev",
   stacktrace: true,
